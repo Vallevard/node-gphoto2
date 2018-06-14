@@ -23,11 +23,12 @@
   },
   "devDependencies": {
     "async": "^0.2.10",
+    "body-parser": "^1.18.3",
     "coffee-script": "^1.7.1",
     "express": "^3.1.2",
-    "jade": "^0.28.2",
     "mocha": "^3.5.3",
     "pre-commit": "^0.0.8",
+    "pug": "^2.0.3",
     "should": "^1.2.2",
     "sinon": "^1.6.0",
     "superagent": "^0.14.9",

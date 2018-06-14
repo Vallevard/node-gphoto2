@@ -3,6 +3,7 @@ global[id] ?= require name for id, name of {
   "fs"
   "GPhoto":"../"
   "express"
+  bodyParser: "body-parser"
   _: "underscore"
 }
 
@@ -16,6 +17,7 @@ camera = undefined
 gphoto.list (cameras)->
   console.log "found #{cameras.length} cameras"
   # select first Canon camera
+  console.log(cameras)
   camera = _(cameras).chain().filter((camera)->camera.model.match /(Canon|Nikon)/).first().value()
   # exit if no Canon camera is connected
   process.exit(-1) unless camera
@@ -30,9 +32,9 @@ gphoto.list (cameras)->
 app = express()
 
 app.use express.static __dirname + '/public'
-app.use express.bodyParser()
+app.use bodyParser.json()
 
-app.engine '.html', require('jade').__express
+app.engine '.html', require('pug').__express
 app.get '/', (req, res)->
   res.render 'index.html'
 
