@@ -18,7 +18,7 @@ gphoto.list (cameras)->
   console.log "found #{cameras.length} cameras"
   # select first Canon camera
   console.log(cameras)
-  camera = _(cameras).chain().filter((camera)->camera.model.match /(Canon|Nikon)/).first().value()
+  camera = _(cameras).chain().filter((camera)->camera.model.match /(USB PTP Class Camera)/).first().value()
   # exit if no Canon camera is connected
   process.exit(-1) unless camera
   # retrieve available configuration settings
