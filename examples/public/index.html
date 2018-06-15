@@ -2,13 +2,13 @@
 <body>
   <canvas id="preview" width="1056" height="704"></canvas>
   <div id="downloads"></div>
-  <script type="text/javascript" src="//www.google.com/jsapi"></script>
   <script type="text/javascript" src="/js/dat.gui.js"></script>
   <script type="text/javascript" src="/js/superagent.js"></script>
+  <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E="
+      crossorigin="anonymous"></script>
 
-  <script type="text/javascript">
-    google.load('jquery', '1.7.1');
-  </script>
   <script type="text/coffeescript">
     request = superagent
     class GPhoto
@@ -28,7 +28,7 @@
       loadSettings: (cb)=>
         request.get '/settings', (settings)=>
           cb JSON.parse(settings.text) if cb
-          
+
       enumSettings: (settings, gui)=>
         unless gui
           gui = @gui
@@ -53,8 +53,7 @@
               gui.add(foo, val.label, val.choices).onChange(changeFn)
             else if val.type is 'range'
               gui.add(foo, val.label, val.min, val.max, val.step).onChange(changeFn)
-              
-        
+
       displaySettings: ()=>
         @gui = new dat.GUI() unless @gui
         foo =
@@ -65,17 +64,16 @@
               console.log res
               if res.text
                 $('<a>').attr('href', res.text).text(res.text).appendTo($('#downloads')).css('display':'block')
-        
+
         @gui.add foo, 'Take picture'
         @gui.add foo, 'Start live preview'
         @loadSettings @enumSettings
-              
-        
+
     window.gphoto = new GPhoto()
     window.gphoto.displaySettings()
   </script>
   </script>
   <script type="text/javascript" src="/js/coffee-script.js"></script>
-  
+
 </body>
 </html>

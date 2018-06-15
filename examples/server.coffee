@@ -107,6 +107,8 @@ app.get '/preview*', (req, res)->
         preview_listeners = new Array()
         d = Date.parse(new Date())
 
+        console.log data
+
         for listener in tmp
           unless er
             listener.writeHead 200, 'Content-Type': 'image/jpeg', 'Content-Length':data.length
@@ -115,4 +117,7 @@ app.get '/preview*', (req, res)->
             listener.writeHead 500
           listener.end()
 
-app.listen process.env.PORT || 1337, "0.0.0.0"
+# Define port
+port = process.env.PORT || 1337
+app.listen port, ->
+    console.log "Server listening on port:", port
